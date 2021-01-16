@@ -24,6 +24,7 @@ public class ApiTestContextCollection {
    */
   public List<ApiTestContext> take(SearchCondition condition) throws ApiTestContextDoesNotExistException {
     List<ApiTestContext> result = new LinkedList<>();
+    List<ApiTestContext> removeItem = new LinkedList<>();
 
     contexts.forEach(context -> {
       boolean isEquals = condition.getPath().equals(context.getPath())
@@ -32,9 +33,11 @@ public class ApiTestContextCollection {
 
       if (isEquals) {
         result.add(context);
-        contexts.remove(context);
+        removeItem.add(context);
       }
     });
+
+    contexts.removeAll(removeItem);
 
     if (result.isEmpty()) {
       throw new ApiTestContextDoesNotExistException("The test target does not exist.");
