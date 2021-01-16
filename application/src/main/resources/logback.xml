@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+  <property file="/application/src/main/resources/logback.properties"/>
+
+  <appender name="REPORT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator>
+        <expression>logger.equals("${reportLoggerName}")</expression>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+
+    <target>System.out</target>
+    <encoder>
+      <pattern>
+        %msg
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator>
+        <expression>logger.equals("${stdoutLoggerName}")</expression>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+
+    <target>System.out</target>
+    <encoder>
+      <pattern>
+        [%thread] %-5level - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+      <evaluator>
+        <expression>logger.equals("${stderrLoggerName}")</expression>
+      </evaluator>
+      <onMismatch>DENY</onMismatch>
+      <onMatch>ACCEPT</onMatch>
+    </filter>
+
+    <target>System.err</target>
+    <encoder>
+      <pattern>
+        [%thread] %-5level - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <logger name="${reportLoggerName}" level="TRACE">
+    <appender-ref ref="REPORT"/>
+  </logger>
+
+  <logger name="${stdoutLoggerName}" level="TRACE">
+    <appender-ref ref="STDOUT"/>
+  </logger>
+
+  <logger name="${stderrLoggerName}" level="TRACE">
+    <appender-ref ref="STDERR"/>
+  </logger>
+</configuration>

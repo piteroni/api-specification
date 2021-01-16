@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  api-specification:
+    build:
+      context: .
+      dockerfile: development.dockerfile
+    container_name: api-specification
+    hostname: api-specification
+    volumes:
+      - ./application:/application
+      - ./resources:/resources
+      - af348c7a70674cee7e0ed5f4:/home/gradle/.gradle
+volumes:
+  # gradle dependencies
+  af348c7a70674cee7e0ed5f4:

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Abstract:
+#   依存関係ファイルをホスト側に配置する事で、依存関係ファイルをIDEに認識させる.
+
+set -eu
+
+cd $(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")
+
+cp -R /home/gradle/.gradle /application/.dependencies
+
+gradle eclipse

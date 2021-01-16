@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: poc
+  version: '1.0'
+  contact:
+    name: watanabeJunna
+    email: dev.piteroni@gmail.com
+  description: 'Some description about the general point of this API, and why it exists when another similar but different API also exists.'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /ok:
+    post:
+      summary: OK
+      operationId: post-ok
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                required:
+                  - ok
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                required:
+                  - ok
+      description: OK
+      tags:
+        - ok
+  /non-response:
+    get:
+      summary: NON RESPONSE
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-non-response
+      description: NON RESPONSE
+  /ref:
+    get:
+      summary: REF
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                required:
+                  - ok
+        '401':
+          $ref: '#/components/responses/unauthorized'
+      operationId: get-ref
+      description: REF
+  /non-ref:
+    get:
+      summary: NON REF
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/NonRefs'
+      operationId: get-non-ref
+      description: NON REF
+components:
+  schemas: {}
+  responses:
+    unauthorized:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+tags:
+  - name: ok

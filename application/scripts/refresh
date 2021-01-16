@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Abstract:
+#   依存関係更新の際にクラスパスの更新、古いモジュールの削除等を行うことでIDEに依存関係を再認識させる.
+
+set -eu
+
+cd $(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")
+
+rm -rf bin build .dependencies .classpath .gradle .project .settings /home/gradle/.gradle/*
+
+echo ": install dependencies"
+gradle assemble -x shadowJar -x shadowDistTar -x shadowDistZip -x distZip -x distTar
+
+echo ": assemble classpath"
+gradle eclipse
+
+echo ": setup ide"
+"$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)/setup-ide"

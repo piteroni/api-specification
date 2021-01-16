@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eu
+
+cd $(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")
+
+java -cp /application/build/libs/application-all.jar io.github.piteroni.api.specification.main.App $*

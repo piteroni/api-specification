@@ -1,0 +1,10 @@
+build
+bin
+logPath_IS_UNDEFINED
+.gradle
+.dependencies
+.project
+.classpath
+.settings
+
+!scripts/build

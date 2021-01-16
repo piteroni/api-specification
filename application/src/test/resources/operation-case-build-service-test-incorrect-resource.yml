@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: poc
+  version: '1.0'
+  contact:
+    name: watanabeJunna
+    email: dev.piteroni@gmail.com
+  description: 'Some description about the general point of this API, and why it exists when another similar but different API also exists.'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /incorrect:
+    get:
+      summary: correct
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/unauthorized'
+      operationId: get-incorrect
+      description: incorrect
+components:
+  schemas: {}
+  responses: {}
+tags:
+  - name: no

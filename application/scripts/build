@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Abstract:
+#  アプリケーションを単一のzipにビルドする.
+
+gradle shadowJar

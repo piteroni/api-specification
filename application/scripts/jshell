@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Abstract:
+#  Javaとの対話プロンプトを起動する.
+
+set -eu
+
+cd $(dirname "$(cd "$(dirname "${BASH_SOURCE:-$0}")" && pwd)")
+
+# アプリケーションを単一のzipに出力し、jshellからアプリケーションを参照できるようにする.
+gradle shadowJar
+
+jshell --class-path /application/build/libs/application-all.jar

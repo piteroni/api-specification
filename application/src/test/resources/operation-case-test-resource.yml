@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: API Test
+  version: v0
+  contact:
+    name: developer
+    email: developer@example.com
+  description: 'Some description about the general point of this API, and why it exists when another similar but different API also exists.'
+servers:
+  - url: 'http://example/api/v0'
+paths:
+  /login:
+    post:
+      summary: ログインを行う
+      operationId: post-login
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apiToken:
+                    type: string
+                required:
+                  - apiToken
+      description: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      tags:
+        - identification
+tags:
+  - name: identification
+security:
+  - api-auth: []
+ 
