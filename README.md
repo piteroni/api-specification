@@ -1,6 +1,3 @@
-[![Build Status](https://circleci.com/gh/piteroni/api-specification.svg?style=shield)](https://circleci.com/gh/piteroni/api-specification)
-
-
 # Api Specification
 
 This command line tool lets you the input data can be validated for compliance with OpenAPI.
